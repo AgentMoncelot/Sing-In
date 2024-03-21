@@ -2,7 +2,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-
+asd = False
 reemail = [
 
     '$',
@@ -67,7 +67,7 @@ repass = [
     '@'
 ]
 
-
+null_input = False
 
 
 error = False
@@ -114,25 +114,37 @@ for i in repass:
 
 
 
+if len(password) < 1 and len(Name) < 1 and len(email) < 1:
 
 
+
+    null_input = True
 
 #st.form_submit_button('Войти')
 
 #Button
+
+
+
 if error == False:
     with st.empty():
-        st.button('**Регистрация**', key='login')
-else:
+        reg = st.button('**Регистрация**', key='login')
+        if reg:
+            st.warning("Пожалуйста, убедитесь, что все поля заполнены корректно.", icon='⚠')
+            
 
-    st.warning(ss, icon='⚠')
+
+else:
+    if null_input == True:
+        asd = True
+
+
 
 button = st.button('**Войти**')
 
 
 
 #st.link_button('Войти', url="#")
-
 
 
 
