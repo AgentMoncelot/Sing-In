@@ -128,14 +128,17 @@ if len(password) < 1 and len(Name) < 1 and len(email) < 1:
 
 if error == False:
     with st.empty():
+
         reg = st.button('**Регистрация**', key='login')
         if reg:
             st.warning("Пожалуйста, убедитесь, что все поля заполнены корректно.", icon='⚠')
-            
+
 
 
 else:
+    st.warning(ss, icon='⚠')
     if null_input == True:
+
         asd = True
 
 
