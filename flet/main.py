@@ -1,7 +1,6 @@
 #import
 import streamlit as st
-import pandas as pd
-import numpy as np
+
 asd = False
 reemail = [
 
@@ -143,7 +142,10 @@ else:
 
 
 
-button = st.button('**Войти**')
+button = st.link_button('**Регистрация**', url="log.py")
+if button:
+    st.markdown("<script>window.close();</script>", unsafe_allow_html=True)
+
 
 
 
