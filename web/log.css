@@ -1,0 +1,64 @@
+*{
+    display: block;
+}
+input{
+    color: #fafafa;
+    background: #262730;
+    border: 1px solid #262730;
+border-radius: 8px;
+width: 67%;
+height: 40px;
+}
+
+.log_text{
+    font-family: var(--second-family);
+font-weight: 700;
+font-size: 44px;
+line-height: 120%;
+color: #fafafa;
+}
+:root {
+  --font-family: "Inter", sans-serif;
+  --second-family: "Source Sans Pro", sans-serif;
+  --third-family: "Orbitron", sans-serif;
+  --font3: "JejuHallasan", sans-serif;
+}
+
+body{
+    background: #0e1117;
+}
+.input_text{
+    margin-top: 2.25vh;
+    margin-bottom: 2.25vh;
+    font-family: var(--second-family);
+font-weight: 400;
+font-size: 14px;
+line-height: 160%;
+color: #fafafa;
+}
+button{
+     transition: background-color 0.6s, color 0.6s, transform 0.6s;
+    background: #131720;
+    border: 1px solid rgba(250, 250, 250, 0.2);
+border-radius: 8px;
+width: 117px;
+height: 38px;
+    font-family: var(--second-family);
+font-weight: 600;
+font-size: 16px;
+line-height: 160%;
+text-align: center;
+color: #fafafa;
+    margin-top: 1.6vh;
+}
+
+.collider{
+    display: block;
+margin-left: 30%;
+}
+
+
+button:hover{
+    border: #ef233c;
+    background: #b70344;
+}
