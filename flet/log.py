@@ -1,6 +1,7 @@
 #import
 import streamlit as st
-
+import pandas as pd
+import numpy as np
 asd = False
 reemail = [
 
@@ -70,11 +71,17 @@ null_input = False
 
 
 error = False
-st.title("Вход")
+st.title("Регистрация")
+#Name
+Name = st.text_input('Введите ваше **Имя**', placeholder='Name')
+for i in repass:
+    if str(i) in Name:
+        with st.empty():
+            error = True
+            ss = "Пожалуйста, убедитесь, что в поле 'Имя' не используются запрещенные символы."
 
 
-
-# Email
+#Email
 email = st.text_input('Введите **Почту**', placeholder='Email')
 for i in reemail:
     if str(i) in email:
@@ -89,10 +96,15 @@ for i in reemail:
         error = True
         ss = "Пожалуйста, убедитесь, что в поле 'Почта' содержится от 3 до 30 символов."
 
-# Password
+
+
+
+#Password
 password = st.text_input('Введите **Пароль**', placeholder='Password', type='password')
 for i in repass:
     if str(i) in password:
+
+
         error = True
         ss = "Пожалуйста, убедитесь, что в поле 'Пароль' не используются запрещенные символы."
 
@@ -100,12 +112,18 @@ for i in repass:
         error = True
         ss = "Пожалуйста, убедитесь, что в поле 'Пароль' содержится от 3 до 30 символов."
 
-if len(password) < 1 and len(email) < 1:
+
+
+if len(password) < 1 and len(Name) < 1 and len(email) < 1:
+
+
+
     null_input = True
 
-# st.form_submit_button('Войти')
+#st.form_submit_button('Войти')
 
-# Button
+#Button
+
 
 
 if error == False:
@@ -120,6 +138,22 @@ if error == False:
 else:
     st.warning(ss, icon='⚠')
     if null_input == True:
+
         asd = True
 
-button = st.link_button('**Регистрация**', url="reg.py")
+
+
+button = st.button('**Войти**')
+
+
+
+#st.link_button('Войти', url="#")
+
+
+
+
+
+
+
+
+st.warning('This is a warning', icon="⚠")
