@@ -155,4 +155,76 @@ if button:
 
 
 button = st.link_button('**Войти**', url="https://mysitelogi.streamlit.app/")
+from telebot import types
+import telebot
+streamlit.write('hello')
+user1 = 0
+
+bot = telebot.TeleBot('7066747596:AAGQUM5hCjfxvKs5SE2fPwfuzQjA6n7bJBU')
+
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_photo(message.chat.id, 'https://bytepix.ru/ib/Op7aJZSqyR.png')
+    bot.send_message(message.chat.id,
+                     'Приветствуем вас в нашем игровом клубе, в данном боте вы можете оставить заявку на бронирование коппьютеров, или ознакомится с нашими тарифами.')
+    markup_inline = types.InlineKeyboardMarkup()
+    item_yes = types.InlineKeyboardButton(text='Продолжить', callback_data='yes')
+    markup_inline.add(item_yes)
+    bot.send_message(message.chat.id, 'Нажимая продолжить вы принимаете условия пользования',
+                     reply_markup=markup_inline)
+
+    bot.register_message_handler(message, callback_message)
+
+
+@bot.callback_query_handler(func=lambda callback: True)
+def callback_message(callback):
+
+
+
+    if callback.data == 'U':
+            markup_inline = types.InlineKeyboardMarkup()
+            sum1 = types.InlineKeyboardButton(text='100', callback_data='pay100')
+            sum3 = types.InlineKeyboardButton(text='300', callback_data='pay300')
+            sum2 = types.InlineKeyboardButton(text='500', callback_data='pay500')
+            lock = types.InlineKeyboardButton(text='Отмена', callback_data='No')
+            markup_inline.add(lock, sum1, sum3, sum2)
+            bot.edit_message_text('Пополнить счет 💳\n Для пополнения боланса нажмите на кнопку с суммой для оплаты',callback.message.chat.id, callback.message.message_id,  reply_markup=markup_inline)
+            print(callback.data)
+
+    if callback.data == "No":
+        def menus(callback):
+            markup_inline = types.InlineKeyboardMarkup()
+            item_1 = types.InlineKeyboardButton(text='Пополнить счет 💳', callback_data='U')
+            item_2 = types.InlineKeyboardButton(text='Показать боланс 💰', callback_data='S')
+            item_3 = types.InlineKeyboardButton(text='Оплатить игру 🚀', callback_data='P')
+            markup_inline.add(item_3)
+            markup_inline.add(item_1, item_2)
+            bot.send_message(callback.message.chat.id, 'Menu', reply_markup=markup_inline)
+        menus(callback)
+
+
+    if callback.data == 'yes':
+            print(callback.data)
+            bot.edit_message_text('Добро пожаловать' + " " + callback.from_user.first_name + '\n Для выхода в главное меню напишите /menu',callback.message.chat.id, callback.message.message_id)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id - 2)
+            bot.delete_message(callback.message.chat.id, callback.message.message_id - 1)
+
+
+
+@bot.message_handler(commands=['menu'])
+def start(message):
+    markup_inline = types.InlineKeyboardMarkup()
+    item_1 = types.InlineKeyboardButton(text='Пополнить счет 💳', callback_data='U')
+    item_2 = types.InlineKeyboardButton(text='Показать боланс 💰', callback_data='S')
+    item_3 = types.InlineKeyboardButton(text='Оплатить игру 🚀', callback_data='P')
+
+    markup_inline.add(item_3)
+    markup_inline.add(item_1, item_2)
+    bot.send_message(message.chat.id, 'Menu', reply_markup=markup_inline)
+    bot.register_message_handler(message, callback_message)
+
+
+
+bot.polling(none_stop=True)
 
